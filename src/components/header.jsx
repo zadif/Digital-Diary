@@ -1,4 +1,4 @@
 function Header() {
-  return <header>Digital Diary</header>;
+  return <header class="satisfy-regular">Digital Diary</header>;
 }
 export default Header;
