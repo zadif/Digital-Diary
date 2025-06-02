@@ -1,10 +1,24 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-function Body() {
+function writing(props) {
+  if (props.firstVisit) {
+    return (
+      <div className="box-side box-front">
+        <div className="typewriter-wrapper">
+          <div className="typewriter">Save your memories digitally</div>
+        </div>
+      </div>
+    );
+  }
+}
+
+function Body(props) {
   const [showBackSide, setShowBackSide] = useState(false);
 
   useEffect(() => {
     // Show the back side after the typewriter effect is complete
+
     const timer = setTimeout(() => {
       setShowBackSide(true);
     }, 4500);
@@ -16,21 +30,17 @@ function Body() {
     <div className="box-container oswaldText">
       <div className={`box ${showBackSide ? "box-flip" : ""}`}>
         {" "}
-        {/* Front side with typewriter text */}
-        <div className="box-side box-front">
-          <div className="typewriter-wrapper">
-            <div className="typewriter">Save your memories digitally</div>
-          </div>
-        </div>
-        {/* Back side with features */}
+        {writing(props)}
         <div className="box-side box-back">
           <h1>Digital Diary</h1>
           <div className="box-features">
-            <div className="feature">
-              <div className="feature-icon">📝</div>
-              <h3>Write Entries</h3>
-              <p>Record your thoughts and memories</p>
-            </div>
+            <Link to="/addNew">
+              <div className="feature">
+                <div className="feature-icon">📝</div>
+                <h3>Write Entries</h3>
+                <p>Record your thoughts and memories</p>
+              </div>
+            </Link>
             <div className="feature">
               <div className="feature-icon">📸</div>
               <h3>Add Photos</h3>
@@ -42,7 +52,6 @@ function Body() {
               <p>Find any memory instantly</p>
             </div>
           </div>
-          <button className="get-started-btn">Get Started</button>
         </div>
       </div>
     </div>

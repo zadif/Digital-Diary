@@ -258,3 +258,12 @@ header {
     text-align: center;
   }
 }
+
+.box-features a,
+.box-features a:link,
+.box-features a:visited,
+.box-features a:hover,
+.box-features a:active {
+  text-decoration: none;
+  color: inherit;
+}
