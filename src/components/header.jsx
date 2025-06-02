@@ -1,4 +1,4 @@
 function Header() {
-  return <header>Hola</header>;
+  return <header>Digital Diary</header>;
 }
 export default Header;
