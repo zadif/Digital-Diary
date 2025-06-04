@@ -1,0 +1,312 @@
+/* Mobile responsiveness - tablets */
+@media (max-width: 768px) {
+  #wrapper {
+    width: 95%;
+    padding: 15px;
+    margin: 0 auto;
+  }
+
+  #paper {
+    padding: 15px;
+  }
+
+  #title {
+    width: 90%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  textarea#text {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+  }
+
+  button,
+  input[type="submit"] {
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    margin-right: 5px;
+    width: calc(50% - 5px);
+    box-sizing: border-box;
+  }
+
+  .middler {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile responsiveness - phones */
+@media (max-width: 480px) {
+  #wrapper {
+    width: 98%;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  #paper {
+    padding: 10px;
+  }
+
+  .middler {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  #margin {
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  #title {
+    width: 100%;
+    padding: 12px;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  textarea#text {
+    width: 100%;
+    padding: 12px;
+    height: 120px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  button,
+  input[type="submit"] {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
+    padding: 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  #wrapper {
+    width: 100%;
+    padding: 5px;
+  }
+
+  #paper {
+    padding: 8px;
+  }
+
+  .middler {
+    font-size: 1.2rem;
+  }
+
+  textarea#text {
+    height: 100px;
+    padding: 8px;
+  }
+
+  button,
+  input[type="submit"] {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+#startBtn,
+#stopBtn,
+#clearBtn,
+#copyBtn {
+  margin: 10px;
+
+  padding: 12px 15px;
+  border-radius: 2%;
+  border: 1px solid rgb(91, 90, 90);
+  text-align: center;
+}
+
+.glowing-button {
+  padding: 12px 24px;
+  background: transparent;
+  color: #00eeff;
+  border: 2px solid #00eeff;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glowing-button:hover {
+  background: #00eeff;
+  color: #000;
+  box-shadow: 0 0 10px #00eeff, 0 0 10px #00eeff, 0 0 10px #00eeff;
+}
+
+.middler {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+/* Custom Alert Styles */
+.custom-alert {
+  padding: 16px 24px;
+  margin: 10px auto;
+  border-radius: 5px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 90%;
+  max-width: 350px;
+  min-height: 60px;
+  font-size: 16px;
+  font-weight: 500;
+  animation: slideDown 0.3s ease-out;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Progress line at the top */
+.custom-alert::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: rgba(84, 82, 82, 0.809);
+  animation: progressBar 5s linear forwards;
+}
+
+.custom-alert-success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
+.custom-alert-danger {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
+
+.alert-close-btn {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.alert-close-btn:hover {
+  opacity: 1;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progressBar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  #wrapper {
+    width: 95%;
+    padding: 10px;
+  }
+
+  #title {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  textarea#text {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .middler {
+    font-size: 2rem;
+  }
+
+  /* Control button layout on tablet */
+  .btn {
+    width: calc(20% - 5px);
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+
+  .glowing-button {
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  #wrapper {
+    width: 98%;
+    padding: 8px;
+  }
+
+  .middler {
+    font-size: 1.5rem;
+  }
+
+  #title {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  textarea#text {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  /* Control button layout on mobile - prevent full width */
+  .btn {
+    width: calc(20% - 10px);
+    margin: 5px;
+    padding: 12px 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  .glowing-button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+}
