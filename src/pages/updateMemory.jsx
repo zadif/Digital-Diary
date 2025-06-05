@@ -81,13 +81,16 @@ function UpdateMemory() {
       }
     };
   }, []);
-
   // Handle form submission
   const handleUpdate = async (e) => {
-    setLoading(true);
+    e.preventDefault(); // Prevent default form submission
+    setLoading(true); // Show loader
+
     const title = document.getElementById("title").value;
     const content = document.getElementsByClassName("text2")[0].value;
+
     if (!title || !content) {
+      setLoading(false); // Hide loader if validation fails
       setAlert({
         show: true,
         message: "Please fill in both title and content",
@@ -96,8 +99,10 @@ function UpdateMemory() {
       setTimeout(() => setAlert({ show: false, message: "", type: "" }), 5000);
       return;
     }
+
     let objectID = memoryData._id;
     console.log(objectID);
+
     try {
       const response = await fetch("http://localhost:8080/memories", {
         method: "PUT",
@@ -106,25 +111,17 @@ function UpdateMemory() {
         },
         body: JSON.stringify({ title, content, objectID }),
       });
+
       if (response.ok) {
         const result = await response.json();
-        setAlert({
-          show: true,
-          message: "Memory updated successfully!",
-          type: "success",
-        });
-        setTimeout(
-          () => setAlert({ show: false, message: "", type: "" }),
-          5000
-        );
-        // // Clear the form
-        // document.getElementById("title").value = "";
-        // document.getElementsByClassName("text2")[0].value = "";
+        // Success! Redirect to ViewAllMemories page
+        window.location.href = "/viewAllMemories";
       } else {
         const error = await response.json();
+        setLoading(false); // Hide loader on error
         setAlert({
           show: true,
-          message: "Error",
+          message: "Failed to update memory. Please try again.",
           type: "danger",
         });
         setTimeout(
@@ -192,16 +189,14 @@ function UpdateMemory() {
               resize: "none",
               height: "160px",
             }}
-          ></textarea>
+          ></textarea>{" "}
           <br />{" "}
-          <Link to="/viewAllMemories">
-            <input
-              className="glowing-button"
-              type="submit"
-              value="Update"
-              onClick={() => handleUpdate(memoryData.id)}
-            />
-          </Link>
+          <input
+            className="glowing-button"
+            type="submit"
+            value="Update"
+            onClick={handleUpdate}
+          />
           <button id="startBtn" type="button" className="btn btn-info">
             Start
           </button>
