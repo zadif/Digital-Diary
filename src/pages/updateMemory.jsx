@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./AddNew.css";
 
-function AddNew() {
+function UpdateMemory() {
+  const location = useLocation();
+  const memoryData = location.state?.memoryData;
+  const [loading, setLoading] = useState(false);
+
   const [alert, setAlert] = useState({ show: false, message: "", type: "" });
   useEffect(() => {
     // Check if speech recognition is supported
@@ -77,9 +83,8 @@ function AddNew() {
   }, []);
 
   // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleUpdate = async (e) => {
+    setLoading(true);
     const title = document.getElementById("title").value;
     const content = document.getElementsByClassName("text2")[0].value;
     if (!title || !content) {
@@ -91,29 +96,30 @@ function AddNew() {
       setTimeout(() => setAlert({ show: false, message: "", type: "" }), 5000);
       return;
     }
-
+    let objectID = memoryData._id;
+    console.log(objectID);
     try {
       const response = await fetch("http://localhost:8080/memories", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title, content }),
+        body: JSON.stringify({ title, content, objectID }),
       });
       if (response.ok) {
         const result = await response.json();
         setAlert({
           show: true,
-          message: "Memory saved successfully!",
+          message: "Memory updated successfully!",
           type: "success",
         });
         setTimeout(
           () => setAlert({ show: false, message: "", type: "" }),
           5000
         );
-        // Clear the form
-        document.getElementById("title").value = "";
-        document.getElementsByClassName("text2")[0].value = "";
+        // // Clear the form
+        // document.getElementById("title").value = "";
+        // document.getElementsByClassName("text2")[0].value = "";
       } else {
         const error = await response.json();
         setAlert({
@@ -136,9 +142,20 @@ function AddNew() {
       setTimeout(() => setAlert({ show: false, message: "", type: "" }), 5000);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="neonBox">
+        <div className="neon-loader">
+          <div className="neon-loader-ring"></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
-      <h1 className="oswaldText middler">Add New Entry</h1> {/* Custom Alert */}
+      <h1 className="oswaldText middler">Update Memory</h1> {/* Custom Alert */}
       {alert.show && (
         <div className={`custom-alert custom-alert-${alert.type}`}>
           {alert.message}
@@ -154,11 +171,18 @@ function AddNew() {
       <div id="wrapper">
         <form id="paper" method="get" action="">
           <div id="margin">
-            Title: <input id="title" type="text" name="title" />
+            Title:{" "}
+            <input
+              id="title"
+              type="text"
+              name="title"
+              defaultValue={memoryData.title}
+            />
           </div>
           <textarea
             placeholder="Enter something funny."
             id="text"
+            defaultValue={memoryData.content}
             className="text2"
             name="text"
             rows="4"
@@ -170,12 +194,14 @@ function AddNew() {
             }}
           ></textarea>
           <br />{" "}
-          <input
-            className="glowing-button"
-            type="submit"
-            value="Save"
-            onClick={handleSubmit}
-          />
+          <Link to="/viewAllMemories">
+            <input
+              className="glowing-button"
+              type="submit"
+              value="Update"
+              onClick={() => handleUpdate(memoryData.id)}
+            />
+          </Link>
           <button id="startBtn" type="button" className="btn btn-info">
             Start
           </button>
@@ -193,4 +219,4 @@ function AddNew() {
     </>
   );
 }
-export default AddNew;
+export default UpdateMemory;
