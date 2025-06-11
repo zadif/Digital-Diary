@@ -93,7 +93,9 @@ function AddNew() {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/memories", {
+      // Access environment variable for the API URL
+      const API_URL = import.meta.env.baseURL || "http://localhost:8080";
+      const response = await fetch(`${API_URL}/memories`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

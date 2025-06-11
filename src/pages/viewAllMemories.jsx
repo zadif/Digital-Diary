@@ -4,7 +4,8 @@ import "./viewAllMemories.css";
 
 async function FetchMemories() {
   try {
-    const response = await fetch("http://localhost:8080/memories", {
+    const API_URL = import.meta.env.baseURL || "http://localhost:8080";
+    const response = await fetch(`${API_URL}/memories`, {
       method: "GET",
     });
     if (response.ok) {
@@ -62,7 +63,8 @@ function ViewAllMemories() {
 
   const deleteMemory = async (memoryId) => {
     try {
-      const response = await fetch("http://localhost:8080/memories", {
+      const API_URL = import.meta.env.baseURL || "http://localhost:8080";
+      const response = await fetch(`${API_URL}/memories`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -175,7 +177,7 @@ function ViewAllMemories() {
 
   return (
     <>
-      <h2 className="oswaldText middler">All Memories</h2>{" "}
+      <h2 className="oswaldText middler">All Memories </h2>{" "}
       {alert.show && (
         <div className={`custom-alert custom-alert-${alert.type}`}>
           {alert.message}
@@ -205,7 +207,11 @@ function ViewAllMemories() {
                     className="card memory-card text-center"
                     key={globalIndex}
                   >
-                    <div className="card-header">Memory #{globalIndex + 1}</div>{" "}
+                    <Link to={`/card`} state={{ memoryData: memory }}>
+                      <div className="card-header">
+                        Memory #{globalIndex + 1}
+                      </div>{" "}
+                    </Link>
                     <div className="card-body">
                       <h3 className="card-title">
                         {memory.title || "Untitled"}
@@ -238,7 +244,9 @@ function ViewAllMemories() {
           // For tablet and mobile: render cards directly
           memories.map((memory, index) => (
             <div className="card memory-card text-center" key={index}>
-              <div className="card-header">Memory #{index + 1}</div>{" "}
+              <Link to={"/card"} state={{ memoryData: memory }}>
+                <div className="card-header"> Memory #{index + 1}</div>{" "}
+              </Link>
               <div className="card-body">
                 <h3 className="card-title">{memory.title || "Untitled"}</h3>{" "}
                 <p className="card-text">{memory.content}</p>{" "}

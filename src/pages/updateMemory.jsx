@@ -104,7 +104,8 @@ function UpdateMemory() {
     console.log(objectID);
 
     try {
-      const response = await fetch("http://localhost:8080/memories", {
+      const API_URL = import.meta.env.baseURL || "http://localhost:8080";
+      const response = await fetch(`${API_URL}/memories`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

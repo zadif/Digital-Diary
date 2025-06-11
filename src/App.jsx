@@ -5,6 +5,7 @@ import AddNew from "./pages/AddNew";
 import ViewAllMemories from "./pages/viewAllMemories";
 import UpdateMemory from "./pages/updateMemory";
 import ErrorPage from "./pages/404Error";
+import Card from "./components/Card";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 // ...existing imports...
@@ -19,6 +20,7 @@ function App() {
         <Route path="viewAllMemories" element={<ViewAllMemories />} />
         <Route path="updateMemory" element={<UpdateMemory />} />
         <Route path="*" element={<ErrorPage />} />
+        <Route path="card" element={<Card />} />
       </Routes>
     </BrowserRouter>
   );
