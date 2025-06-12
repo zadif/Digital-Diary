@@ -15,6 +15,7 @@ function writing(val) {
 }
 
 function Body(props) {
+  fetch("https://digital-diary-backend-9dqf.onrender.com/health");
   const [showBackSide, setShowBackSide] = useState(false);
   const [showTypewriter, setShowTypewriter] = useState(false);
   useEffect(() => {
