@@ -4,6 +4,9 @@ import "./AddNew.css";
 function AddNew() {
   const API_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8080";
   console.log("APIURL: ", API_URL);
+  const res = fetch(`${API_URL}health`);
+
+  console.log("Response of health: ");
   const [alert, setAlert] = useState({ show: false, message: "", type: "" });
   useEffect(() => {
     // Check if speech recognition is supported
