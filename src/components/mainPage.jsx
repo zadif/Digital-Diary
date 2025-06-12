@@ -15,7 +15,11 @@ function writing(val) {
 }
 
 function Body(props) {
-  fetch("https://digital-diary-backend-9dqf.onrender.com/health");
+  useEffect(() => {
+    fetch("https://digital-diary-backend-9dqf.onrender.com/health").catch(
+      (error) => console.error("Health check failed:", error)
+    );
+  }, []);
   const [showBackSide, setShowBackSide] = useState(false);
   const [showTypewriter, setShowTypewriter] = useState(false);
   useEffect(() => {
