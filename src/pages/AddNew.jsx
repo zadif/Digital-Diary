@@ -2,11 +2,6 @@ import { useEffect, useState } from "react";
 import "./AddNew.css";
 
 function AddNew() {
-  const API_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8080";
-  console.log("APIURL: ", API_URL);
-  const res = fetch(`${API_URL}/health`);
-
-  console.log("Response of health: ", res);
   const [alert, setAlert] = useState({ show: false, message: "", type: "" });
   useEffect(() => {
     // Check if speech recognition is supported
@@ -99,7 +94,7 @@ function AddNew() {
     try {
       // Access environment variable for the API URL
       const API_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8080";
-      const response = await fetch(`${API_URL}memories`, {
+      const response = await fetch(`${API_URL}/memories`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
