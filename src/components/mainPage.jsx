@@ -16,8 +16,8 @@ function writing(val) {
 
 function Body(props) {
   useEffect(() => {
-    fetch("https://digital-diary-backend-9dqf.onrender.com/health").catch(
-      (error) => console.error("Health check failed:", error)
+    fetch(`${API_URL}/health`).catch((error) =>
+      console.error("Health check failed:", error)
     );
   }, []);
   const [showBackSide, setShowBackSide] = useState(false);
