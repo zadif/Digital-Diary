@@ -91,10 +91,9 @@ function AddNew() {
       setTimeout(() => setAlert({ show: false, message: "", type: "" }), 5000);
       return;
     }
-
     try {
       // Access environment variable for the API URL
-      const API_URL = import.meta.env.baseURL || "http://localhost:8080";
+      const API_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8080";
       const response = await fetch(`${API_URL}/memories`, {
         method: "POST",
         headers: {

@@ -4,7 +4,7 @@ import "./viewAllMemories.css";
 
 async function FetchMemories() {
   try {
-    const API_URL = import.meta.env.baseURL || "http://localhost:8080";
+    const API_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8080";
     const response = await fetch(`${API_URL}/memories`, {
       method: "GET",
     });
@@ -60,10 +60,9 @@ function ViewAllMemories() {
   const [memories, setMemories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const deleteMemory = async (memoryId) => {
     try {
-      const API_URL = import.meta.env.baseURL || "http://localhost:8080";
+      const API_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8080";
       const response = await fetch(`${API_URL}/memories`, {
         method: "DELETE",
         headers: {
