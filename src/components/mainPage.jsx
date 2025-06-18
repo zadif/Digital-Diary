@@ -15,6 +15,8 @@ function writing(val) {
 }
 
 function Body(props) {
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+  console.log(API_URL);
   useEffect(() => {
     fetch(`${API_URL}/health`).catch((error) =>
       console.error("Health check failed:", error)
